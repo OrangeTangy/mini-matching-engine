@@ -1,0 +1,6 @@
+run = "make && ./matching_engine sample_input.txt"
+entrypoint = "main.c"
+language = "c"
+
+[nix]
+channel = "stable-23_11"
