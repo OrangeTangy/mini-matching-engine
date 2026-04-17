@@ -1,0 +1,53 @@
+# ============================================================
+#  Mini Matching Engine — Sample Input
+#  Run with:  ./matching_engine sample_input.txt
+# ============================================================
+
+# ---- Scenario 1: Full match --------------------------------
+# Buy and sell arrive at the same price.  Both are fully filled.
+BUY  1 100 50
+SELL 2 100 50
+
+# ---- Scenario 2: Partial fill ------------------------------
+# Buy wants 100 units; only 30 are available on the sell side.
+# Buy #3 remains in the book with 70 units.
+BUY  3 101 100
+SELL 4 101 30
+
+PRINT
+
+# ---- Scenario 3: Cancel a resting order -------------------
+CANCEL 3
+
+PRINT
+
+# ---- Scenario 4: Time priority at the same price ----------
+# Three bids all at price 100.  They must fill in arrival order:
+# #5 first, then #6, then #7.
+BUY 5 100 20
+BUY 6 100 30
+BUY 7 100 10
+
+PRINT
+
+# Sell 40 units at 100.  Should fill #5 (20) completely,
+# then partially fill #6 (20 of 30), leaving #6 with 10 and #7 intact.
+SELL 8 100 40
+
+PRINT
+
+# ---- Scenario 5: Aggressive order sweeps multiple levels --
+# Rebuild a multi-level buy side:
+BUY 9  102 10
+BUY 10 101 15
+BUY 11 100 25
+
+PRINT
+
+# An aggressive sell at 99 crosses all three resting buy levels.
+# Executes at each maker's price: 102, 101, 100, 100.
+# Sell #12 wants 50 units; total available above 99 is 10+15+10+10=45.
+# Sell #12 has 5 units left, rests in the book at 99.
+SELL 12 99 50
+
+PRINT
